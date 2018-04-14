@@ -34,7 +34,8 @@ public class LandmarkServiceImpl implements LandmarkService{
             throw new Exception("MESSAGE_CANNOT_BE_NULL");
         }
 
-
         landmarkRepository.save(landmark);
     }
+
+
 }

@@ -19,10 +19,18 @@ public class Landmark implements Serializable {
     private String name;
 
     @Column(name = "COORDINATED_X", nullable = false)
-    private String coordinatedX;
+    private Long coordinatedX;
 
     @Column(name = "COORDINATED_Y", nullable = false)
-    private String coordinatedY;
+    private Long coordinatedY;
+
+    public Landmark(){}
+
+    public Landmark(String name, Long coordinatedX, Long coordinatedY) {
+        this.name = name;
+        this.coordinatedX = coordinatedX;
+        this.coordinatedY = coordinatedY;
+    }
 
     public Long getId() {
         return id;
@@ -40,27 +48,20 @@ public class Landmark implements Serializable {
         this.name = name;
     }
 
-    public String getCoordinatedX() {
+    public Long getCoordinatedX() {
         return coordinatedX;
     }
 
-    public void setCoordinatedX(String coordinatedX) {
+    public void setCoordinatedX(Long coordinatedX) {
         this.coordinatedX = coordinatedX;
     }
 
-    public String getCoordinatedY() {
+    public Long getCoordinatedY() {
         return coordinatedY;
     }
 
-    public void setCoordinatedY(String coordinatedY) {
+    public void setCoordinatedY(Long coordinatedY) {
         this.coordinatedY = coordinatedY;
     }
 
-    /*
-    SELECT * FROM zupper.landmark
-    where coordinated_x BETWEEN 10 AND 30
-    and coordinated_y BETWEEN 0 AND 20;
-
-    -- 20 10 10
-     */
 }

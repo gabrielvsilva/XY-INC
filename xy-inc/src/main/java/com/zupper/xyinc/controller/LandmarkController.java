@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
@@ -63,6 +60,21 @@ public class LandmarkController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
         }
 
+    }
+
+    @RequestMapping(value ="/listProximity", method = RequestMethod.GET)
+    @ResponseBody
+    List<Landmark> listProximity(@RequestParam("x") int x, @RequestParam("y") int y, @RequestParam("distanceMax") int distanceMax){
+
+        List<Landmark> listLandmark = landmarkService.findAll();
+
+        List<Landmark> proximitys = new ArrayList<Landmark>();
+        for(Landmark ld : listLandmark){
+            if(distanceMax >= ( Math.sqrt( ((ld.getCoordinatedX() - x)*(ld.getCoordinatedX() - x)) + ((ld.getCoordinatedY() - y)*(ld.getCoordinatedY() - y) ) ) )){
+                proximitys.add(ld);
+            }
+        }
+        return proximitys;
     }
 
 }

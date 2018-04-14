@@ -1,0 +1,58 @@
+<div class="container">
+
+    <div>
+        <h3>Cadastrar Ponto de Interesse</h3>
+
+        <div class="row">
+            <div class="col-sm-12 col-md-5">
+                <div class="form-group">
+                    <label for="nome">Nome:</label>
+                    <input type="text" ng-model="landmark.name" class="form-control" id="nome">
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-3">
+                <div class="form-group">
+                    <label for="endereco">Ponto X:</label>
+                    <input type="number" min="0" ng-model="landmark.coordinatedX" class="form-control" id="endereco">
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-3">
+                <div class="form-group">
+                    <label for="telefone">Ponto Y:</label>
+                    <input type="number" min="0" ng-model="landmark.coordinatedY" class="form-control" id="telefone">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <button type="submit" ng-click="save()" class="btn btn-primary">Salvar</button>
+
+            <button type="submit" ng-click="clear()" class="btn btn-default">Cancelar</button>
+        </div>
+
+    </div>
+
+    <h3>Lista de Pontos de Interesses</h3>
+
+    <input style="width: 30%" class="form-control" placeholder="Pesquisar Ponto de Interesse..." type="text" ng-model="search">
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Localidade X</th>
+                <th>Localidade Y</th>
+            </tr>
+            </thead>
+            <tbody ng-repeat="land in landmarks | filter:{name: search}  track by (land.id + $index)">
+            <tr>
+                <td>{{land.name}}</td>
+                <td>{{land.coordinatedX}}</td>
+                <td>{{land.coordinatedY}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

@@ -1,0 +1,53 @@
+<div class="container">
+
+    <div>
+        <h3>Pesquisar Proximidades</h3>
+
+        <div class="row">
+            <div class="col-sm-12 col-md-3">
+                <div class="form-group">
+                    <label for="x">Ponto X:</label>
+                    <input type="number" min="0" ng-model="x" class="form-control" id="x">
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-3">
+                <div class="form-group">
+                    <label for="y">Ponto Y:</label>
+                    <input type="number" min="0" ng-model="y" class="form-control" id="y">
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-3">
+                <div class="form-group">
+                    <label for="dist">Distância Maxíma:</label>
+                    <input type="number" min="0" ng-model="distanceMax" class="form-control" id="dist">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <button type="submit" ng-click="search(x,y,distanceMax)" class="btn btn-primary">Pesquisar</button>
+
+            <button type="submit" ng-click="clear()" class="btn btn-default">Cancelar</button>
+        </div>
+
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Localidade X</th>
+                <th>Localidade Y</th>
+            </tr>
+            </thead>
+            <tbody ng-repeat="land in landmarks | filter:{name: search}  track by (land.id + $index)">
+            <tr>
+                <td>{{land.name}}</td>
+                <td>{{land.coordinatedX}}</td>
+                <td>{{land.coordinatedY}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
